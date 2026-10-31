@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Compass, Lightbulb } from "lucide-react";
 import { Navbar, DemoBadge } from "@/components/foundrlens/navbar";
 import { exampleStartups } from "@/components/foundrlens/recently-explored";
@@ -45,19 +45,19 @@ function MyStartupsPage() {
             up here.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-2">
-            <a
-              href="/analyze"
+            <Link
+              to="/analyze"
               className="inline-flex h-9 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               Analyze an idea
-            </a>
-            <a
-              href="/explore"
+            </Link>
+            <Link
+              to="/explore"
               className="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
               <Compass className="size-4" aria-hidden />
               Explore opportunities
-            </a>
+            </Link>
           </div>
         </div>
 

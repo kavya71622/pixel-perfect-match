@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, Focus } from "lucide-react";
-import { useState, type ComponentType } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { navbarLinkClass } from "./search-bar";
 
@@ -99,5 +99,3 @@ export function DemoBadge({ label = "Demo data" }: { label?: string }) {
     </span>
   );
 }
-
-export type { ComponentType };
