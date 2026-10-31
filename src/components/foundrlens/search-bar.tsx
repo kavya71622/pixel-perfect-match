@@ -10,6 +10,8 @@ interface SearchBarProps {
   className?: string;
   /** When provided, typing is reported live (controlled mode, e.g. explore filters). */
   onChange?: (value: string) => void;
+  /** Set false on pages where submit should filter in place instead of navigating. */
+  navigateOnSubmit?: boolean;
 }
 
 /**
@@ -22,6 +24,7 @@ export function SearchBar({
   autoFocus = false,
   className,
   onChange,
+  navigateOnSubmit = true,
 }: SearchBarProps) {
   const navigate = useNavigate();
   const [value, setValue] = useState(initialIdea);
@@ -39,7 +42,7 @@ export function SearchBar({
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     const idea = value.trim();
-    if (!idea) return;
+    if (!idea || !navigateOnSubmit) return;
     navigate({ to: "/analyze", search: { idea } });
   }
 

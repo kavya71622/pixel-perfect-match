@@ -4,12 +4,12 @@ import { ArrowLeft, TriangleAlert } from "lucide-react";
 import { Navbar, DemoBadge } from "@/components/foundrlens/navbar";
 
 export const Route = createFileRoute("/analyze")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    idea:
-      typeof search.idea === "string" && search.idea.trim().length > 0
-        ? search.idea.trim()
-        : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { idea?: string } => {
+    const value = search["idea"];
+    return typeof value === "string" && value.trim().length > 0
+      ? { idea: value.trim() }
+      : {};
+  },
   head: () => ({
     meta: [
       { title: "Idea Analysis — FoundrLens AI" },

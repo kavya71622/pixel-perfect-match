@@ -7,7 +7,7 @@ interface FeatureCardProps {
   description: string;
   icon: LucideIcon;
   to: string;
-  accent?: boolean;
+  accent?: boolean | undefined;
 }
 
 /**

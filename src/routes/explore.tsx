@@ -173,6 +173,7 @@ function ExplorePage() {
           <SearchBar
             initialIdea={query}
             placeholder="Search opportunities by title or organization..."
+            navigateOnSubmit={false}
             onChange={(value) => setQuery(value)}
           />
         </div>
@@ -205,7 +206,7 @@ function ExplorePage() {
             placeholder="Deadline"
             value={deadline}
             onChange={setDeadline}
-            options={deadlineOptions}
+            options={deadlineOptions.map((option) => option.value)}
             valueLabels={Object.fromEntries(deadlineOptions.map((o) => [o.value, o.label]))}
           />
         </div>
@@ -295,7 +296,10 @@ interface FilterSelectProps {
 
 function FilterSelect({ ariaLabel, placeholder, value, onChange, options, valueLabels }: FilterSelectProps) {
   return (
-    <Select value={value || undefined} onValueChange={onChange}>
+    <Select
+      {...(value ? { value } : {})}
+      onValueChange={(next) => onChange(next === "__all" ? "" : next)}
+    >
       <SelectTrigger aria-label={ariaLabel} className="w-full">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
