@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, TriangleAlert } from "lucide-react";
-import { Navbar, DemoBadge } from "@/components/foundrlens/navbar";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/analyze")({
   validateSearch: (search: Record<string, unknown>) => ({
@@ -128,6 +126,3 @@ function AnalyzePage() {
     </div>
   );
 }
-
-export const analysisSectionCount = sections.length;
-export const analyzeBannerClass = cn();

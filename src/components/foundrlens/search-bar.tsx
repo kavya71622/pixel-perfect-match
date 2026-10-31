@@ -8,6 +8,8 @@ interface SearchBarProps {
   placeholder?: string;
   autoFocus?: boolean;
   className?: string;
+  /** When provided, typing is reported live (controlled mode, e.g. explore filters). */
+  onChange?: (value: string) => void;
 }
 
 /**
@@ -19,6 +21,7 @@ export function SearchBar({
   placeholder = "Describe your startup idea or search opportunities...",
   autoFocus = false,
   className,
+  onChange,
 }: SearchBarProps) {
   const navigate = useNavigate();
   const [value, setValue] = useState(initialIdea);
@@ -27,6 +30,11 @@ export function SearchBar({
   useEffect(() => {
     if (autoFocus) inputRef.current?.focus();
   }, [autoFocus]);
+
+  function updateValue(next: string) {
+    setValue(next);
+    onChange?.(next);
+  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -49,7 +57,7 @@ export function SearchBar({
           ref={inputRef}
           type="text"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => updateValue(e.target.value)}
           placeholder={placeholder}
           aria-label="Startup idea or search query"
           className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-tertiary"
